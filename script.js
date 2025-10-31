@@ -1,125 +1,32 @@
 // Game data - in a real implementation, this would be loaded from games.json
 // For this example, we'll use a subset of the provided data
-const gamesData = {
-    "games": [
-        {
-            "id": 2,
-            "name": "1v1.LOL",
-            "category": "action",
-            "popularity": "80M+",
-            "releaseDate": "May 1, 2020",
-            "rating": "TODO",
-            "featured": true,
-            "link": "https://macvg-games.github.io/action-games/1v1lol/",
-            "genre": "Shooter Games",
-            "build": "Unity WebGL",
-            "dev": "JustPlay.LOL",
-            "about": "1v1.LOL is a fun battle royale and survival shooting game where your only goal is to survive. Use the controls smart and well to attack or defense by shooting weapons or building stuff from your materials! React fast and defeat all enemies to win! There are different modes that you can play, with the classic multiplayer battle royale, training obstacles, and more fun maps for you to explore!",
-            "controls": [
-                "WASD Keys: Move",
-                "Space: Jump",
-                "Mouse: Turn",
-                "Left Click: shoot / Use Material",
-                "Right click: aim",
-                "Numbers / Certain Letters: Switch Weapons / Materials",
-                "Esc: Pause"
-            ],
-            "thumb": "thumb.png",
-            "download": true
-        },
-        {
-            "id": 4,
-            "name": "10 Minutes Till Dawn",
-            "category": "action",
-            "popularity": "10M+",
-            "releaseDate": "May 11, 2022",
-            "rating": "TODO",
-            "link": "https://macvg-games.github.io/action-games/10-minutes-till-dawn/",
-            "genre": "Survival Games",
-            "build": "Unity WebGL",
-            "dev": "flanne",
-            "about": "10 Minutes Till Dawn is a very exciting fantasy survival game for you to play! Use WASD to move and dodge the creatures or else you'll loose hearts and die. Use your mouse to aim and click to shoot. You can collect the creature's coins when they die and upgrade your character to gain abilities!",
-            "controls": ["WASD Keys: Move", "Click: Shoot", "R: Reload", "Esc: Pause"],
-            "thumb": "thumb.png"
-        },
-        {
-            "id": 332,
-            "name": "Adam and Eve 5 Part 1",
-            "category": "action",
-            "popularity": "1M+",
-            "releaseDate": "December 2018",
-            "rating": "TODO",
-            "link": "https://macvg-games.github.io/action-games/adam-eve/",
-            "genre": "Point and Click Strategy Games",
-            "build": "HTML5, JavaScript",
-            "dev": "Functu Games",
-            "about": "⚠️DO NOT click \"Clear Save\" or the game won't work!⚠️ Adam and Eve is back with another sequel: Adam and Eve 5 Part 1! Adam and Eve is a game series so horrible that it's actually fun to waste some time on! Everything on this game is bad, even the name! Because the game is so bad that you actually want to spend time to play it! Click on things to make a path for Adam so he can go find his beloved Eve, enjoy!",
-            "controls": ["Click: Action"],
-            "thumb": "thumb.png"
-        },
-        {
-            "id": 333,
-            "name": "Adam and Eve 5 Part 2",
-            "category": "action",
-            "popularity": "1M+",
-            "releaseDate": "December 2018",
-            "rating": "TODO",
-            "link": "https://macvg-games.github.io/action-games/adam-eve-2/",
-            "genre": "Point and Click Strategy Games",
-            "build": "HTML5, JavaScript",
-            "dev": "Functu Games",
-            "about": "⚠️DO NOT click \"Clear Save\" or the game won't work!⚠️ Adam and Eve is back with another sequel: Adam and Eve 5 Part 2! Continue the adventure you started in part 1 here! Adam and Eve is a game series so horrible that it's actually fun to waste some time on! Everything on this game is bad, even the name! Because the game is so bad that you actually want to spend time to play it! Click on things to make a path for Adam so he can go find his beloved Eve! Enjoy!",
-            "controls": ["Click: Action"],
-            "thumb": "thumb.png"
-        },
-        {
-            "id": 10,
-            "name": "A Dark Room",
-            "category": "strategy",
-            "popularity": "5M+",
-            "releaseDate": "June 10, 2013",
-            "rating": "TODO",
-            "link": "https://macvg-games.github.io/action-games/adarkroom/",
-            "genre": "Text-Based Strategy Games",
-            "build": "HTML5, JavaScript",
-            "dev": "Doublespeak Games",
-            "about": "A Dark Room is a fun game where you can make decisions on what to do, what to make, or what materials to gather in order to survive and beat the game. Simply click on the buttons to do different things and build a village.",
-            "controls": ["Click: Action"],
-            "thumb": "thumb.png",
-            "download": true
-        },
-        {
-            "id": 14,
-            "name": "Alien Hominid",
-            "category": "action",
-            "popularity": "50M+",
-            "releaseDate": "November 21, 2004",
-            "rating": "TODO",
-            "link": "https://macvg-games.github.io/action-games/alienhominid/",
-            "genre": "Run and Gun Games",
-            "build": "Flash",
-            "dev": "The Behemoth",
-            "about": "Alien Hominid is a fast-paced action game where you control an alien and shoot or dodge the police officers!",
-            "controls": ["Still working on this one O_O"],
-            "thumb": "thumb.png"
-        },
-        {
-            "id": 15,
-            "name": "Amidst the Clouds",
-            "category": "action",
-            "popularity": "5M+",
-            "releaseDate": "Unknown",
-            "rating": "TODO",
-            "link": "https://macvg-games.github.io/action-games/amidst-the-clouds/",
-            "genre": "Platformer Games",
-            "build": "HTML5, JavaScript",
-            "dev": "Casper van Dommelen",
-            "about": "Amidst the Clouds is a really creative game where you need to get to the exit using arrow keys to move, and jumping on the special white \"smoke\" will make you float up or down, and the airflows will push you! Press space to start the game.",
-            "controls": ["Still working on this one O_O"],
-            "thumb": "thumb.png"
-        }
-    ]
-};
+// Load games from external JSON file
+let gamesData = { games: [] };
+
+// Function to load games data
+async function loadGamesData() {
+    try {
+        const response = await fetch('games.json');
+        gamesData = await response.json();
+        loadGames(); // Load the games after data is fetched
+    } catch (error) {
+        console.error('Error loading games data:', error);
+        // Fallback to sample data if JSON file fails to load
+        gamesData = {
+            "games": [
+                // Your sample games as fallback
+            ]
+        };
+        loadGames();
+    }
+}
+
+// Update the init function
+function init() {
+    loadGamesData(); // Changed from loadGames()
+    setupEventListeners();
+    updateFavoritesUI();
+}
 
 // DOM Elements
 const gamesGrid = document.getElementById('gamesGrid');
