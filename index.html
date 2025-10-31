@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NiamVerse - Ultimate Gaming Experience</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="settings-panel">
+        <div class="settings-header">
+            <h2>Settings</h2>
+            <button id="closeSettings" class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="settings-content">
+            <div class="setting-group">
+                <h3>Themes</h3>
+                <div class="theme-options">
+                    <div class="theme-option" data-theme="default">Default</div>
+                    <div class="theme-option" data-theme="dark">Dark</div>
+                    <div class="theme-option" data-theme="blue">Blue</div>
+                    <div class="theme-option" data-theme="purple">Purple</div>
+                </div>
+            </div>
+            <div class="setting-group">
+                <h3>Tab Cloaker</h3>
+                <div class="cloaker-controls">
+                    <input type="text" id="tabTitle" placeholder="Tab Title" value="NiamVerse">
+                    <input type="text" id="tabIcon" placeholder="Favicon URL" value="logo.png">
+                    <button id="applyCloak">Apply Cloak</button>
+                </div>
+            </div>
+            <div class="setting-group">
+                <h3>About:Blank Embedder</h3>
+                <div class="embedder-controls">
+                    <input type="text" id="embedUrl" placeholder="URL to embed">
+                    <button id="applyEmbed">Embed in About:Blank</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Top Menu Bar -->
+        <header class="menu-bar">
+            <div class="menu-content">
+                <div class="logo-section">
+                    <img src="logo.png" alt="NiamVerse Logo" class="logo">
+                    <h1 class="company-name">NiamVerse</h1>
+                </div>
+                <div class="search-section">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search games...">
+                    </div>
+                </div>
+                <nav class="nav-buttons">
+                    <button class="nav-btn active" data-section="home"><i class="fas fa-home"></i> Home</button>
+                    <button class="nav-btn" data-section="new"><i class="fas fa-star"></i> New</button>
+                    <button class="nav-btn" data-section="trending"><i class="fas fa-fire"></i> Trending</button>
+                    <button class="nav-btn" data-section="favorites"><i class="fas fa-heart"></i> Favorites</button>
+                    <button class="nav-btn" data-section="recent"><i class="fas fa-history"></i> Recent</button>
+                    <button class="nav-btn" id="settingsBtn"><i class="fas fa-cog"></i> Settings</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Games Grid -->
+            <section id="gamesSection" class="games-section active">
+                <div class="section-header">
+                    <h2 id="sectionTitle">All Games</h2>
+                    <div class="filter-controls">
+                        <select id="categoryFilter">
+                            <option value="all">All Categories</option>
+                            <option value="action">Action</option>
+                            <option value="casual">Casual</option>
+                            <option value="driving">Driving</option>
+                            <option value="strategy">Strategy</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="gamesGrid" class="games-grid">
+                    <!-- Games will be dynamically loaded here -->
+                </div>
+            </section>
+
+            <!-- Game Frame Section (hidden by default) -->
+            <section id="gameFrameSection" class="game-frame-section">
+                <div class="game-container">
+                    <div class="game-display">
+                        <div class="game-frame-header">
+                            <button id="backToGames" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Games</button>
+                            <h3 id="currentGameName">Game Name</h3>
+                        </div>
+                        <div class="game-frame-wrapper">
+                            <iframe id="gameFrame" src="" frameborder="0"></iframe>
+                            <div class="game-controls">
+                                <span id="gameTitle">Game Title</span>
+                                <div class="control-buttons">
+                                    <button id="fullscreenBtn" class="control-btn"><i class="fas fa-expand"></i></button>
+                                    <button id="shareBtn" class="control-btn"><i class="fas fa-share-alt"></i></button>
+                                    <button id="favoriteBtn" class="control-btn"><i class="far fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-sidebar">
+                        <div class="rating-section">
+                            <h3>Rate this Game</h3>
+                            <div class="star-rating">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <div class="rating-text">Your rating: <span id="ratingValue">0</span>/5</div>
+                            <textarea id="gameNotes" placeholder="Add your notes about this game..."></textarea>
+                            <button id="submitRating" class="submit-btn">Submit Rating</button>
+                        </div>
+                        <div class="game-info">
+                            <h3>About this Game</h3>
+                            <p id="gameDescription">Game description will appear here.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://www.youtube.com/@NiamCo-1" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://github.com/NiamCO" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                    <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2023 NiamVerse. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Fullscreen Overlay -->
+    <div id="fullscreenOverlay" class="fullscreen-overlay">
+        <button id="exitFullscreen" class="exit-fullscreen-btn"><i class="fas fa-times"></i></button>
+        <iframe id="fullscreenFrame" src="" frameborder="0"></iframe>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
