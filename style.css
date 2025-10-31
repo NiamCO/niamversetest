@@ -65,7 +65,18 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
+.favorite-badge {
+    background: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+}
 .menu-content {
     display: flex;
     justify-content: space-between;
