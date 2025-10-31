@@ -45,29 +45,25 @@
     --accent-color: #fd79a8;
 }
 
+/* Fix menu bar positioning */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: var(--transition);
-    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--card-bg);
+    border-radius: 0 0 20px 20px;
+    margin: 0;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-/* Menu Bar */
-.menu-bar {
-    background: var(--card-bg);
-    box-shadow: var(--shadow);
-    border-radius: 0 0 20px 20px;
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
 }
 
 .menu-content {
